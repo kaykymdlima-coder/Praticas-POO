@@ -1,5 +1,9 @@
 public class Loja{
     public double saldo;
+
+    public Loja(double saldo){
+        this.saldo = saldo;
+    }
     public String pedido(Cliente cli, Produto pedido){
         String txt = "O Cliente "+cli.getNome()+" pediu o "+pedido.nome+", por: "+pedido.vender();
         saldo += pedido.vender();
