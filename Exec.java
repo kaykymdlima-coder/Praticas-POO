@@ -50,31 +50,36 @@ public class Exec {
                     System.err.println(erro.getMessage());
                 }
             }else if(opc == 2){
-                System.out.println("---Produzindo...---");
+                System.out.println("---Produzindo...Oleo---");
                 pro[0].produzir(caçada.macacos);
                 //macacos acabam depois da produção
                 caçada.macacos = 0;
                 System.out.println(pro[0].apresentarQuantia());
             }else if(opc == 3){
-                System.out.println("---Produzindo...---");
+                System.out.println("---Produzindo...Tapete---");
                 pro[1].produzir(caçada.macacos);
                 //macacos acabam depois da produção
                 caçada.macacos = 0;
                 System.out.println(pro[1].apresentarQuantia());
 
             }else if(opc==4){           
+                try{
                 System.out.println("---Fazendo Pedido---");
                 System.out.println("0-Oleo. 1-Tapete");
                 int indice = sc.nextInt();
                 sc.nextLine();
-
+                if(indice > 1){
+                    throw new IndiceAltoDms("Alto Dms fi, é so 0 ou 1");
+                }
                 String resultado = loja.pedido(cli, pro[indice]); 
                 System.out.println(resultado);
                 //huarda em resultado pra fazer o registro
                 identificador++;
                 //identifica o loop
                 registraCoisos(resultado, caçada.showMacacos(), loja.showSaldo(), identificador);
-                
+            } catch (IndiceAltoDms erro2) {
+                System.err.println(erro2.getMessage());
+            }
             }else if(opc == 5){
                 System.out.println(pro[0].apresentarQuantia());
                 System.out.println(pro[1].apresentarQuantia());
